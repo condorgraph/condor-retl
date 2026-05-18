@@ -160,7 +160,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright ${new Date().getFullYear()} Condor RETL contributors.`,
+        copyright: "© 2026 Condor",
       },
       prism: {
         theme: lightCodeTheme,
