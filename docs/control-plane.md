@@ -40,9 +40,7 @@ The repository docs tree is a knowledge base with explicit role boundaries. The 
 
 **`docs/examples.md`** — curated examples only. Examples illustrate the compact docs but do not override them.
 
-**`docs/appendices.md`** — support context, historical pressure tests, taxonomy summaries, and schema-catalog disposition.
-
-**`docs/reference-mapping.md`** — reference-only mapping from old profile, membership, consent, and subscription vocabulary to State/Event patterns. It is not a core public model page.
+**`docs/appendices.md`** — support context, taxonomy summaries, and schema-catalog disposition.
 
 **`docs/plans/`** — execution-planning policy and deferred-work ledger only. Active plans are temporary work artifacts and closed plan records are not retained in the repository. Intentionally deferred work registers in `docs/plans/deferred-work.md`. Plans are support artifacts, not independent policy surfaces. Durable decisions produced by a plan must be promoted into the compact root docs before the plan can close.
 

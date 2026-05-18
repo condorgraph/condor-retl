@@ -4,11 +4,6 @@ RETL declares reverse ETL work from source-shaped rows into destination-facing
 mutations. The active public model is organized around five primitives:
 **Source**, **State**, **Event**, **Sync**, and **Destination Surface**.
 
-The old profile, membership, consent, and subscription vocabulary is not the
-core public model. It is explained only in
-[Reference Mapping](./reference-mapping.md) as a compatibility bridge for older
-language.
-
 ## Root API Surface
 
 The stable public Python API is the `import retl` root export surface. Users
