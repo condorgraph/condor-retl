@@ -74,7 +74,7 @@ dev = [
     "duckdb>=1.4,<2",
     "mypy>=1.11,<2",
     "protobuf>=6,<7",
-    "pytest>=8.3,<9",
+    "pytest>=8.3,<10",
     "pytest-xdist>=3.6,<4",
     "condor-retl-bing-ads",
     "condor-retl-google-ads-data-manager",
