@@ -183,7 +183,5 @@ diagnostics instead.
   idempotency behavior belong to [Runtime](./runtime.md).
 - Destination Surface contracts, target resolution, and receipt interpretation
   belong to [Destinations](./destinations.md).
-- Old vocabulary mapping belongs to
-  [Reference Mapping](./reference-mapping.md).
 - Exact type declarations, Arrow schemas, manifest schemas, SQL table catalogs,
   and JSON schemas are generated or code-owned material.

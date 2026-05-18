@@ -8,7 +8,6 @@ docs:
 - [Runtime](./runtime.md)
 - [Canonical Model](./canonical-model.md)
 - [Destinations](./destinations.md)
-- [Reference Mapping](./reference-mapping.md)
 
 ## Taxonomy Summary
 
@@ -27,17 +26,6 @@ Active RETL vocabulary is organized around:
   surface, declaration family, and declaration name.
 - **Destination Batch Ledger**: durable delivery, retry, and outcome records
   used to derive completion and retry summaries.
-
-## Historical Pressure Tests
-
-The State/Event model was pressure-tested against common destination classes:
-profile-like surfaces, list or audience membership surfaces, event import
-surfaces, consent-like surfaces, asynchronous request submission, and managed
-destination objects.
-
-These pressure tests are historical validation evidence. They are not current
-partner capability references and must not override connector-owned Destination
-Surface contracts.
 
 ## Generated Material
 

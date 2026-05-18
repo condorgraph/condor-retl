@@ -22,7 +22,6 @@ ROOT_NAVIGATION_EXPECTATIONS = {
         "destinations.md",
         "examples.md",
         "appendices.md",
-        "reference-mapping.md",
         "plans/index.md",
     ],
     "plans/index.md": [
@@ -45,7 +44,6 @@ REQUIRED_COMPACT_DOCS = tuple(
         "destinations.md",
         "examples.md",
         "appendices.md",
-        "reference-mapping.md",
         "plans/index.md",
     )
 )
@@ -289,9 +287,7 @@ FEATURE_TOGGLE_SCAN_ROOTS = (
     "destination_connectors",
 )
 
-RUNNER_VOCABULARY_ALLOWED_PATHS = {
-    "docs/reference-mapping.md",
-}
+RUNNER_VOCABULARY_ALLOWED_PATHS: set[str] = set()
 
 RUNNER_VOCABULARY_SCAN_SUFFIXES = {
     ".md",
@@ -1903,11 +1899,8 @@ def validate_public_runner_vocabulary(report: Report, root: Path) -> None:
                     "Runner is the canonical public execution term, so public docs, "
                     "entrypoints, and CLI paths must not keep the retired term."
                 ),
-                rule=(
-                    "Public first-party surfaces may use the retired execution term only "
-                    "in `docs/reference-mapping.md`."
-                ),
-                inspect_next="docs/reference-mapping.md",
+                rule="Public first-party surfaces must use the Runner vocabulary.",
+                inspect_next=rel_path,
             )
             continue
         text = read_text(path)
@@ -1923,11 +1916,8 @@ def validate_public_runner_vocabulary(report: Report, root: Path) -> None:
                 "Runner is the canonical public execution term, so public docs and "
                 "entrypoints must not keep the retired term."
             ),
-            rule=(
-                "Public first-party surfaces may use the retired execution term only in "
-                "`docs/reference-mapping.md`."
-            ),
-            inspect_next="docs/reference-mapping.md",
+            rule="Public first-party surfaces must use the Runner vocabulary.",
+            inspect_next=rel_path,
         )
 
 

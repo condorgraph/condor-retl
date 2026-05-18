@@ -32,8 +32,6 @@ The compact root pages are the primary reading surface:
   examples
 - [Appendices](./appendices.md) — support context, taxonomy summary, and
   generated-doc disposition
-- [Reference Mapping](./reference-mapping.md) — non-core mapping from older
-  resource vocabulary to State/Event patterns
 
 Supporting material remains available where needed:
 

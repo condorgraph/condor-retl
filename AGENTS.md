@@ -22,7 +22,6 @@ This file is a navigation shim, not the primary policy surface.
 - Destination package rules live in [docs/destinations.md](./docs/destinations.md).
 - Examples live in [docs/examples.md](./docs/examples.md).
 - Appendices live in [docs/appendices.md](./docs/appendices.md).
-- Old-vocabulary mapping lives in [docs/reference-mapping.md](./docs/reference-mapping.md).
 - Execution planning rules live under [docs/plans/](./docs/plans/index.md).
 - Core runtime and public API code live under [src/retl/](./src/retl).
 - First-party publishable destination packages live under [destination_connectors/](./destination_connectors).
@@ -42,9 +41,8 @@ This file is a navigation shim, not the primary policy surface.
 9. [docs/destinations.md](./docs/destinations.md)
 10. [docs/examples.md](./docs/examples.md)
 11. [docs/appendices.md](./docs/appendices.md)
-12. [docs/reference-mapping.md](./docs/reference-mapping.md), only when old vocabulary appears
-13. [docs/plans/index.md](./docs/plans/index.md)
-14. the relevant temporary active plan, when one exists
+12. [docs/plans/index.md](./docs/plans/index.md)
+13. the relevant temporary active plan, when one exists
 
 ## Core Beliefs
 
