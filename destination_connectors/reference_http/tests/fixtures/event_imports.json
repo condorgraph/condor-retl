@@ -1,0 +1,11 @@
+[
+  {
+    "event_identity": "event-a",
+    "event_fingerprint": "event-fp-a",
+    "event_key_json": "{\"event_id\":\"evt-a\"}",
+    "event_type": "reference_event",
+    "occurred_at": "2026-05-01T00:00:00Z",
+    "identifiers_json": "[{\"type\":\"email\",\"value\":\"a@example.test\"}]",
+    "payload_json": "{\"event_name\":\"reference_event\"}"
+  }
+]

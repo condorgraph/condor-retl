@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "paths": [
+    {
+      "path": "destination_connectors/**",
+      "reason": "Destination-connector-owned packages and connector-local tests may name connector partners inside the destination connector tree."
+    },
+    {
+      "path": "docs/plans/**",
+      "reason": "Execution plans, plan indexes, completed slices, and deferred-work plan records may name destination connectors inside the planning tree."
+    },
+    {
+      "path": "docs/destinations.md",
+      "reason": "The durable destination packaging inventory may name first-party connector packages that exist in the repository."
+    },
+    {
+      "path": "docs/control-plane.md",
+      "reason": "The canonical command surface may name active first-party connector package test and build commands."
+    },
+    {
+      "path": "docs/examples.md",
+      "reason": "Curated destination connector examples may name first-party connector packages that exist in the repository."
+    },
+    {
+      "path": "Makefile",
+      "reason": "The canonical command surface may expose explicit connector-local sandbox validation targets."
+    },
+    {
+      "path": "pyproject.toml",
+      "reason": "The mypy configuration may include first-party connector package roots that exist in the repository."
+    },
+    {
+      "path": "tests/architecture/test_package_layering.py",
+      "reason": "Existing architecture fixture builds a temporary destination connector package to prove validation-path behavior."
+    },
+    {
+      "path": "tests/architecture/test_reference_archive_boundary.py",
+      "reason": "Architecture boundary tests may name active connector package directories when proving build-target behavior."
+    },
+    {
+      "path": "tests/destinations/contract/test_origin_agnostic_destination_contract.py",
+      "reason": "Exact contract guardrail test names forbidden connector terms to prove runtime branching ignores them."
+    },
+    {
+      "path": "tools/checks/**",
+      "reason": "Architecture guardrail implementation and its allowlist must name the checked tokens."
+    },
+    {
+      "path": "tests/architecture/test_destination_name_hygiene.py",
+      "reason": "Architecture test fixtures must name accepted and rejected destination tokens."
+    },
+    {
+      "path": "tests/architecture/test_declarative_destination_surface_guardrails.py",
+      "reason": "Architecture guardrail fixtures name first-party connector examples to prove destination-surface validation."
+    },
+    {
+      "path": "tests/runtime/test_meta_runtime.py",
+      "reason": "Runtime tests for the active Meta destination package may name its connector ref and surfaces."
+    }
+  ]
+}

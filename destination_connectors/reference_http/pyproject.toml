@@ -1,0 +1,52 @@
+[project]
+name = "condor-retl-reference-http"
+version = "0.1.0"
+description = "Reference HTTP destination connector package for RETL State/Event contracts."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE-Apache-2.0.txt"]
+authors = [
+    { name = "Dataration LLC (Condor)", email = "info@condorgraph.com" },
+]
+maintainers = [
+    { name = "Chris Morin", email = "chris@condorgraph.com" },
+]
+requires-python = ">=3.12,<3.15"
+keywords = [
+    "reverse-etl",
+    "data-activation",
+    "destination-connector",
+    "http",
+    "retl",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Database",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "condor-retl>=0.1.0,<0.2",
+]
+
+[project.urls]
+Homepage = "https://condorgraph.com/"
+Documentation = "https://docs.condorgraph.com/reference/connector-packages/"
+Repository = "https://github.com/condorgraph/condor-retl"
+Issues = "https://github.com/condorgraph/condor-retl/issues"
+
+[project.entry-points."retl.destinations"]
+"retl/reference-http" = "retl_reference_http.definitions:connector"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["retl_reference_http"]

@@ -1,0 +1,168 @@
+[project]
+name = "condor-retl"
+version = "0.1.0"
+description = "Public API spine for reverse ETL authoring."
+readme = "README.md"
+license = "Elastic-2.0"
+authors = [
+    { name = "Dataration LLC (Condor)", email = "info@condorgraph.com" },
+]
+maintainers = [
+    { name = "Chris Morin", email = "chris@condorgraph.com" },
+]
+license-files = [
+    "LICENSE.txt",
+    "LICENSE-Elastic-2.0.txt",
+]
+requires-python = ">=3.12,<3.15"
+keywords = [
+    "reverse-etl",
+    "etl",
+    "data-activation",
+    "data-engineering",
+    "customer-data",
+    "python",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Database",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "pyarrow>=18,<23",
+    "requests>=2.32,<3",
+    "sqlglot>=30,<31",
+]
+
+[project.urls]
+Homepage = "https://condorgraph.com/"
+Documentation = "https://docs.condorgraph.com/"
+Repository = "https://github.com/condorgraph/condor-retl"
+Issues = "https://github.com/condorgraph/condor-retl/issues"
+
+[project.scripts]
+retl = "retl.cli:main"
+
+[project.optional-dependencies]
+duckdb = [
+    "duckdb>=1.4,<2",
+]
+bigquery = [
+    "google-cloud-bigquery>=3.39,<4",
+    "google-cloud-bigquery-storage>=2.33,<3",
+]
+databricks = [
+    "databricks-sdk>=0.59,<1",
+    "databricks-sql-connector>=4.1,<5",
+]
+postgresql = [
+    "psycopg[binary]>=3.2,<4",
+]
+snowflake = [
+    "snowflake-connector-python>=3.18,<4",
+]
+
+[dependency-groups]
+dev = [
+    "duckdb>=1.4,<2",
+    "mypy>=1.11,<2",
+    "protobuf>=6,<7",
+    "pytest>=8.3,<9",
+    "pytest-xdist>=3.6,<4",
+    "condor-retl-bing-ads",
+    "condor-retl-google-ads-data-manager",
+    "condor-retl-klaviyo",
+    "condor-retl-meta",
+    "condor-retl-reference-http",
+    "condor-retl-tiktok-ads",
+    "ruff>=0.11,<0.12",
+    "types-requests>=2.32,<3",
+]
+
+[tool.uv.sources]
+condor-retl = { workspace = true }
+condor-retl-bing-ads = { workspace = true }
+condor-retl-google-ads-data-manager = { workspace = true }
+condor-retl-klaviyo = { workspace = true }
+condor-retl-meta = { workspace = true }
+condor-retl-reference-http = { workspace = true }
+condor-retl-tiktok-ads = { workspace = true }
+
+[tool.uv.workspace]
+members = [
+    "destination_connectors/reference_http",
+    "destination_connectors/bing_ads",
+    "destination_connectors/meta",
+    "destination_connectors/google_ads_data_manager",
+    "destination_connectors/klaviyo",
+    "destination_connectors/tiktok_ads",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+ignore-vcs = true
+
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src/retl",
+    "README.md",
+    "LICENSE.txt",
+    "LICENSE-Elastic-2.0.txt",
+    "pyproject.toml",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/retl"]
+
+[tool.mypy]
+explicit_package_bases = true
+mypy_path = [
+    "src",
+    "tools/checks",
+]
+exclude = [
+    "destination_connectors/.*/tests/conftest.py",
+    "destination_connectors/.*/tests/.*/conftest.py"
+    ]
+
+[[tool.mypy.overrides]]
+module = ["pyarrow", "pyarrow.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+    "google.cloud.bigquery",
+    "google.cloud.bigquery.*",
+    "google.cloud.bigquery_storage_v1",
+    "google.cloud.bigquery_storage_v1.*",
+]
+ignore_missing_imports = true
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+src = ["src", "tests", "tools"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["E501"]
+"tools/checks/*.py" = ["E501"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+markers = [
+    "live_sandbox: opt-in credential-backed partner sandbox validation.",
+]
+norecursedirs = ["reference"]

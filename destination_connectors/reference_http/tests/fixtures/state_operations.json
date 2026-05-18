@@ -1,0 +1,20 @@
+[
+  {
+    "operation": "upsert",
+    "state_identity": "customer-a",
+    "state_key_json": "{\"customer_id\":\"a\"}",
+    "target": null,
+    "identifiers_json": "[{\"type\":\"email\",\"value\":\"a@example.test\"}]",
+    "payload_json": "{\"status\":\"active\"}",
+    "payload_fingerprint": "fp-a"
+  },
+  {
+    "operation": "remove",
+    "state_identity": "customer-b",
+    "state_key_json": "{\"customer_id\":\"b\"}",
+    "target": null,
+    "identifiers_json": "[{\"type\":\"email\",\"value\":\"b@example.test\"}]",
+    "payload_json": null,
+    "payload_fingerprint": null
+  }
+]

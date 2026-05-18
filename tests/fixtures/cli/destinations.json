@@ -1,0 +1,9 @@
+{
+  "destinations": [
+    {
+      "name": "reference_http",
+      "supported_retl_versions": ">=0.0.0",
+      "destination_definition_fingerprint": "sha256:reference-http-fixture"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "condor-retl-docs-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Docusaurus user documentation site for condor-retl.",
+  "scripts": {
+    "dev": "docusaurus start --host 127.0.0.1",
+    "start": "npm run dev",
+    "build": "docusaurus build",
+    "serve": "docusaurus serve --host 127.0.0.1",
+    "check": "npm run build",
+    "clear": "docusaurus clear"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.1",
+    "@docusaurus/preset-classic": "3.10.1",
+    "@mdx-js/react": "3.1.1",
+    "prism-react-renderer": "2.4.1",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "overrides": {
+    "serialize-javascript": "7.0.5"
+  },
+  "devDependencies": {}
+}

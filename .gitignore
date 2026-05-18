@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# cache
+.ruff_cache/
+.pytest_cache/
+.uv-cache/
+.retl/
+.mypy_cache/
+.venv/
+.pycache/
+.uv-tools/
+build/
+dist/
+*.egg-info/
+local/
+
+# Environments
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Logs
+*.log
+
+# Prompt files
+prompts/
+ref/

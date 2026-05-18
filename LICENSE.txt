@@ -1,0 +1,7 @@
+Copyright 2026 Dataration LLC (Condor)
+
+The core `condor-retl` package is licensed under the Elastic License 2.0.
+First-party destination connector packages are licensed under the Apache
+License 2.0.
+
+See LICENSE-Elastic-2.0.txt for the full Elastic License 2.0 text.

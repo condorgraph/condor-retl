@@ -1,0 +1,4 @@
+interface:
+  display_name: "RETL SQL Backend"
+  short_description: "Create RETL SQL source backends."
+  default_prompt: "Add or update a RETL SQL backend using the repository-owned source, dialect, runtime-store, config, and proof contracts."
