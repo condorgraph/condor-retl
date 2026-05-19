@@ -17,24 +17,21 @@ import retl
 from retl.backends.duckdb import DuckDBSqlBackend
 
 
-db = DuckDBSqlBackend(
-    database="warehouse.duckdb",
-    source_schema="main",
-    runtime_schema="retl",
+db = DuckDBSqlBackend("warehouse.duckdb", source_schema="main", runtime_schema="retl")
+
+source = retl.source(
+    name="newsletter_customers",
+    backend=db.source_backend(),
+    query="""
+    select customer_id, email
+    from customers
+    where email is not null
+    """,
 )
 
-newsletter_audience = retl.state(
+audience = retl.state(
     name="newsletter_audience",
-    source=retl.source(
-        name="newsletter_customers",
-        mode="snapshot",
-        backend=db.source_backend(),
-        query="""
-        select customer_id, email
-        from customers
-        where email is not null
-        """,
-    ),
+    source=source,
     key={"customer_id": "customer_id"},
     identifiers=[{"type": "email", "value": "email"}],
     target=retl.target("newsletter_customers"),
@@ -47,18 +44,19 @@ meta = retl.destinations.load(
     config_namespace="destinations.meta",
 )
 
-result = retl.runner(
+sync = retl.sync(
+    name="newsletter_to_meta",
+    declaration=audience,
+    destination=meta,
+    surface="custom_audiences",
+)
+
+runner = retl.runner(
     name="newsletter_to_meta",
     runtime_store=db.runtime_store(),
-).run(
-    retl.sync(
-        name="newsletter_to_meta",
-        declaration=newsletter_audience,
-        destination=meta,
-        surface="custom_audiences",
-    ),
-    dry_run=True,
 )
+
+result = runner.run(sync, dry_run=True)
 
 print(result.to_text())
 ```
