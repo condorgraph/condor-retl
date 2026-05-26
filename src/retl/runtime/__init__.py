@@ -31,8 +31,6 @@ from retl.runtime.recovery import (
     AttemptRecord,
     CommitDecisionRecord,
     InMemoryAttemptRecoveryStore,
-    ReceiptRecord,
-    RemoteHandleRecord,
 )
 from retl.runtime.reports import (
     CommitSummary,
@@ -122,10 +120,8 @@ __all__ = [
     "PhaseSummary",
     "ProgressAdvance",
     "ProgressSummary",
-    "ReceiptRecord",
     "RecoveryStore",
     "ReconcileSummary",
-    "RemoteHandleRecord",
     "ReportReference",
     "RetentionSummary",
     "RunIndex",

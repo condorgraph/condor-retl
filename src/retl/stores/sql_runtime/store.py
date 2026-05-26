@@ -11,8 +11,6 @@ from retl.runtime.recovery import (
     AttemptRecord,
     AttemptStatus,
     CommitDecisionRecord,
-    ReceiptRecord,
-    RemoteHandleRecord,
 )
 from retl.stores.contracts import (
     DestinationBatchRecord,
@@ -60,8 +58,6 @@ class SqlRuntimeStore:
     runtime_store_not_initialized_message: ClassVar[str] = "SQL runtime store is not initialized."
 
     attempts: list[AttemptRecord]
-    receipts: list[ReceiptRecord]
-    remote_handles: list[RemoteHandleRecord]
     commit_decisions: list[CommitDecisionRecord]
     sync_reports: list[object]
     destination_batches: list[DestinationBatchRecord]
@@ -445,12 +441,6 @@ class SqlRuntimeStore:
         )
         return identity
 
-    def record_receipt(self, record: ReceiptRecord) -> None:
-        self.receipts.append(record)
-
-    def record_remote_handle(self, record: RemoteHandleRecord) -> None:
-        self.remote_handles.append(record)
-
     def record_commit_decision(self, decision: CommitDecisionRecord) -> None:
         self.commit_decisions.append(decision)
 
@@ -789,8 +779,6 @@ class SqlRuntimeStore:
 
     def _clear_runtime_mirrors(self) -> None:
         self.attempts.clear()
-        self.receipts.clear()
-        self.remote_handles.clear()
         self.commit_decisions.clear()
         self.sync_reports.clear()
         self.destination_batches.clear()

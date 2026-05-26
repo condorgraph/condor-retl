@@ -39,8 +39,6 @@ from retl.runtime.provenance import run_provenance
 from retl.runtime.recovery import (
     AttemptIdentity,
     CommitDecisionRecord,
-    ReceiptRecord,
-    RemoteHandleRecord,
 )
 from retl.runtime.redaction import redact_text
 from retl.runtime.reports import (
@@ -1150,10 +1148,7 @@ def _execute_sync_pages(
             recovery_store=recovery_store,
             sync=sync,
             attempt_id=attempt_id,
-            page_index=page_index,
-            synced=synced,
             advanced=advanced,
-            dry_run=dry_run,
         )
         if staged.next_cursor is None:
             return execution
@@ -1476,10 +1471,7 @@ def _record_submission_evidence(
     recovery_store: RecoveryStore,
     sync: Sync,
     attempt_id: str,
-    page_index: int,
-    synced: SyncPhaseEvidence,
     advanced: SyncProgressAdvance,
-    dry_run: bool,
 ) -> None:
     recovery_store.record_commit_decision(
         CommitDecisionRecord(
@@ -1489,27 +1481,6 @@ def _record_submission_evidence(
             reason=advanced.progress_decision.reason,
         )
     )
-    if dry_run:
-        return
-    for index, receipt in enumerate(synced.submission.receipts):
-        recovery_store.record_receipt(
-            ReceiptRecord(
-                attempt_id=attempt_id,
-                sync_name=sync.name,
-                receipt_id=f"{attempt_id}:page-{page_index}:receipt-{index + 1}",
-                delivery_status=receipt.status,
-                record_count=receipt.count,
-            )
-        )
-    for handle in synced.submission.remote_handles:
-        recovery_store.record_remote_handle(
-            RemoteHandleRecord(
-                attempt_id=attempt_id,
-                sync_name=sync.name,
-                handle=f"page-{page_index}:{handle.kind}:{handle.value}",
-                record_count=synced.submission.successful_count,
-            )
-        )
 
 
 def _collect_phase(collect: CollectEvidence, *, dry_run: bool) -> PhaseStatus:
