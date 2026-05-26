@@ -18,8 +18,6 @@ if TYPE_CHECKING:
         AttemptIdentity,
         AttemptStatus,
         CommitDecisionRecord,
-        ReceiptRecord,
-        RemoteHandleRecord,
     )
 
 WorkFamily = Literal["state", "event"]
@@ -968,10 +966,6 @@ class RecoveryStore(Protocol):
         sync_name: str,
         dry_run: bool,
     ) -> AttemptIdentity: ...
-
-    def record_receipt(self, record: ReceiptRecord) -> None: ...
-
-    def record_remote_handle(self, record: RemoteHandleRecord) -> None: ...
 
     def record_commit_decision(self, decision: CommitDecisionRecord) -> None: ...
 

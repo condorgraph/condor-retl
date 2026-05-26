@@ -11,8 +11,6 @@ from retl.errors import DeclarationValidationError
 from retl.runtime.recovery import (
     AttemptRecord,
     CommitDecisionRecord,
-    ReceiptRecord,
-    RemoteHandleRecord,
 )
 from retl.stores.contracts import DestinationBatchRecord, SqlRelationSpace
 from retl.stores.sql_runtime import validation as validation_helpers
@@ -40,8 +38,6 @@ class PostgreSqlRuntimeStore(SqlRuntimeStore):
     connector: Any | None = field(default=None, repr=False, compare=False)
     autocommit: bool | None = field(default=True, repr=False, compare=False)
     attempts: list[AttemptRecord] = field(default_factory=list, repr=False)
-    receipts: list[ReceiptRecord] = field(default_factory=list, repr=False)
-    remote_handles: list[RemoteHandleRecord] = field(default_factory=list, repr=False)
     commit_decisions: list[CommitDecisionRecord] = field(default_factory=list, repr=False)
     sync_reports: list[object] = field(default_factory=list, repr=False)
     destination_batches: list[DestinationBatchRecord] = field(default_factory=list, repr=False)

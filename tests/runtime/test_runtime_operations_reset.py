@@ -16,8 +16,6 @@ from retl.runtime.recovery import (
     AttemptIdentity,
     AttemptRecord,
     CommitDecisionRecord,
-    ReceiptRecord,
-    RemoteHandleRecord,
 )
 from retl.stores.contracts import (
     DestinationBatchIdentity,
@@ -218,18 +216,6 @@ def test_reset_runtime_store_clears_in_memory_mirrors(tmp_path: Path) -> None:
         attempt_id="attempt-1",
     )
     store.attempts.append(AttemptRecord(identity=attempt_identity, status="active", dry_run=False))
-    store.receipts.append(
-        ReceiptRecord(
-            attempt_id="attempt-1",
-            sync_name="customer_sync",
-            receipt_id="receipt-1",
-            delivery_status="accepted",
-            record_count=1,
-        )
-    )
-    store.remote_handles.append(
-        RemoteHandleRecord(attempt_id="attempt-1", sync_name="customer_sync", handle="remote-1")
-    )
     store.commit_decisions.append(
         CommitDecisionRecord(
             attempt_id="attempt-1",
@@ -244,8 +230,6 @@ def test_reset_runtime_store_clears_in_memory_mirrors(tmp_path: Path) -> None:
     retl.runner(name="ops", runtime_store=store).operations.reset_runtime_store()
 
     assert store.attempts == []
-    assert store.receipts == []
-    assert store.remote_handles == []
     assert store.commit_decisions == []
     assert store.sync_reports == []
     assert store.destination_batches == []
