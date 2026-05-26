@@ -50,9 +50,9 @@ Run Index, concise Sync Result lines, and each Sync Report with stable
 redaction applied by the underlying report renderers.
 
 DuckDB runtime stores must persist `runs`, declaration provenance, each compact
-Sync Report index, destination progress, receipts where applicable, Target
-Registry rows where applicable, and the destination batch ledger as durable
-runtime evidence. The report rows keep redacted compact JSON and query columns
+Sync Report index, destination progress, Target Registry rows where applicable,
+and the destination batch ledger as durable runtime evidence. The report rows
+keep redacted compact JSON and query columns
 for run id, attempt id, Sync, status, counts, failure category, HTTP status,
 latest redacted error detail, and progress advancement. Destination batch
 ledger rows are the durable current-state delivery, retry, and outcome state.
@@ -111,8 +111,8 @@ That context contains two relation spaces:
   authored Source relations and is not mutated by RETL runtime code.
 - **Runtime relation space**: read/write and RETL-owned. It contains current
   state, ordered work, Event import work, destination progress, destination
-  batch ledgers, run/declaration provenance, reports, receipts, recovery
-  markers, and Target Registry rows.
+  batch ledgers, run/declaration provenance, reports, recovery markers, and
+  Target Registry rows.
 
 `collect` is the only runtime phase that may read Source relations and write
 Runtime relations in the same execution. After collect, `stage`, `reconcile`,
@@ -600,9 +600,9 @@ this boundary. Runtime validates the selected Destination Surface and resolves
 Auth Modes before calling connector-owned submission hooks. Those hooks receive
 ephemeral resolved auth and reconciled State/Event work, execute only through
 connector-owned or injected transport, and return bounded Destination
-Submission Evidence for receipts, accepted delivery, retryable failures,
-non-retryable failures, and pre-acceptance failures. Dry Run plans
-toolkit-backed requests but must not invoke transport or persist receipts.
+Submission Evidence for connector-local receipt classification, accepted
+delivery, retryable failures, non-retryable failures, and pre-acceptance
+failures. Dry Run plans toolkit-backed requests but must not invoke transport.
 DuckDB stores compact submission diagnostics on Sync Report rows and current
 delivery state on destination batch ledger rows, including pre-acceptance
 failure category, HTTP status, counts, latest redacted error detail, retry
@@ -711,8 +711,8 @@ Cleanup computes retention watermarks from relevant scan cursors plus
 destination batch ledger evidence. Work at or below a safe watermark may be
 compacted only according to explicit retention rules. Cleanup must not delete
 pending ordered work, current state needed for current-snapshot staging,
-destination progress, receipts needed for delivery evidence, unresolved
-destination batch ledger records, or Target Registry records.
+destination progress, unresolved destination batch ledger records, or Target
+Registry records.
 
 Runtime cleanup has separate safe and destructive surfaces:
 
@@ -872,9 +872,10 @@ tables, full operation tables, full request bodies, auth-bearing values, raw
 full partner response bodies, or stage/reconcile page payloads.
 
 `run_many` produces a thin in-memory **Run Index** to connect shared upstream
-work to per-Sync reports. Detailed destination evidence belongs in SQL
-runtime-store tables and structured logs, not in a persisted Run Index or a
-rich report object.
+work to per-Sync reports. Durable destination delivery authority belongs in the
+destination batch ledger and, when a future safe-resume surface requires more
+detail, explicitly modeled SQL runtime-store tables or structured logs, not in
+a persisted Run Index or a rich report object.
 
 ## Dry Run
 
@@ -887,8 +888,8 @@ and destination surface compatibility are coherent without pretending that
 remote mutation succeeded.
 
 Dry Run still produces Sync Reports and destination-shaped planning evidence,
-but commit decisions must block destination progress advancement, receipts, and
-retention compaction.
+but commit decisions must block destination progress advancement and retention
+compaction.
 
 ## Ledger-First Recovery
 

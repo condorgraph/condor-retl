@@ -21,23 +21,6 @@ class AttemptRecord:
 
 
 @dataclass(frozen=True)
-class ReceiptRecord:
-    attempt_id: str
-    sync_name: str
-    receipt_id: str
-    delivery_status: Literal["accepted", "confirmed"]
-    record_count: int
-
-
-@dataclass(frozen=True)
-class RemoteHandleRecord:
-    attempt_id: str
-    sync_name: str
-    handle: str
-    record_count: int | None = None
-
-
-@dataclass(frozen=True)
 class CommitDecisionRecord:
     attempt_id: str
     sync_name: str
@@ -64,8 +47,6 @@ class InMemoryAttemptRecoveryStore:
     """Deterministic test store for runtime attempts and recovery evidence."""
 
     attempts: list[AttemptRecord] = field(default_factory=list)
-    receipts: list[ReceiptRecord] = field(default_factory=list)
-    remote_handles: list[RemoteHandleRecord] = field(default_factory=list)
     commit_decisions: list[CommitDecisionRecord] = field(default_factory=list)
     _next_attempt_number: int = field(default=1, init=False, repr=False)
 
@@ -92,12 +73,6 @@ class InMemoryAttemptRecoveryStore:
         )
         return identity
 
-    def record_receipt(self, record: ReceiptRecord) -> None:
-        self.receipts.append(record)
-
-    def record_remote_handle(self, record: RemoteHandleRecord) -> None:
-        self.remote_handles.append(record)
-
     def record_commit_decision(self, decision: CommitDecisionRecord) -> None:
         self.commit_decisions.append(decision)
 
@@ -119,6 +94,4 @@ __all__ = [
     "AttemptStatus",
     "CommitDecisionRecord",
     "InMemoryAttemptRecoveryStore",
-    "ReceiptRecord",
-    "RemoteHandleRecord",
 ]
