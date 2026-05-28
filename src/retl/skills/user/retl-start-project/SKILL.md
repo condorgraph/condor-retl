@@ -6,8 +6,8 @@ description: Start a new RETL project with AI-selected structure, files, checks,
 # Start A RETL Project
 
 Use this skill when a user wants to set up RETL from scratch or add RETL to an
-existing application. Inspect the repository first, then choose the smallest
-structure that makes the work maintainable.
+existing application. Inspect the repository first, then create a
+`retl_project/` package using the shape the user selects.
 
 ## Setup Awareness
 
@@ -22,22 +22,32 @@ Before creating files, inspect for existing RETL code:
 If a RETL setup exists, preserve its structure unless the user asks to
 reorganize it. If no setup exists, ask only for missing essentials that cannot
 be inferred from the project: source backend, destination, State versus Event
-intent, and whether this is a quick proof or a maintained project.
+intent, and whether they want the simplified or project version described
+below.
 
 ## Recommended Shapes
 
-For one source, one declaration, and one destination, a single-file setup is
-acceptable:
+Always create a `retl_project/` package. Before creating files, ask the user
+which shape they want:
 
-```text
-sync.py
-```
+- Simplified version: good for a single source and one to two Syncs.
+- Project version: able to grow with greater complexity over time.
 
-For multiple Syncs, multiple destinations, private destination code, team
-review, or production operation, prefer an organized package:
+For the simplified version, keep the package compact:
 
 ```text
 retl_project/
+  __init__.py
+  sync.py
+```
+
+For the project version, separate responsibilities so the setup can grow across
+multiple Syncs, multiple destinations, private destination code, team review, or
+production operation:
+
+```text
+retl_project/
+  __init__.py
   sources.py
   states.py
   events.py
@@ -47,10 +57,6 @@ retl_project/
 tests/
   test_retl_imports.py
 ```
-
-Adapt names to the user's existing package. Do not create a separate
-`retl_project/` package if their application already has a natural module for
-jobs or data activation.
 
 ## Workflow
 
