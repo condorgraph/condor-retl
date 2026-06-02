@@ -14,6 +14,7 @@ resolution-markers = [
 members = [
     "condor-retl",
     "condor-retl-bing-ads",
+    "condor-retl-file",
     "condor-retl-google-ads-data-manager",
     "condor-retl-klaviyo",
     "condor-retl-meta",
@@ -238,6 +239,7 @@ snowflake = [
 [package.dev-dependencies]
 dev = [
     { name = "condor-retl-bing-ads" },
+    { name = "condor-retl-file" },
     { name = "condor-retl-google-ads-data-manager" },
     { name = "condor-retl-klaviyo" },
     { name = "condor-retl-meta" },
@@ -270,6 +272,7 @@ provides-extras = ["duckdb", "bigquery", "databricks", "postgresql", "snowflake"
 [package.metadata.requires-dev]
 dev = [
     { name = "condor-retl-bing-ads", editable = "destination_connectors/bing_ads" },
+    { name = "condor-retl-file", editable = "destination_connectors/file" },
     { name = "condor-retl-google-ads-data-manager", editable = "destination_connectors/google_ads_data_manager" },
     { name = "condor-retl-klaviyo", editable = "destination_connectors/klaviyo" },
     { name = "condor-retl-meta", editable = "destination_connectors/meta" },
@@ -298,6 +301,17 @@ requires-dist = [
     { name = "condor-retl", editable = "." },
     { name = "requests", specifier = ">=2.32,<3" },
 ]
+
+[[package]]
+name = "condor-retl-file"
+version = "0.1.0"
+source = { editable = "destination_connectors/file" }
+dependencies = [
+    { name = "condor-retl" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "condor-retl", editable = "." }]
 
 [[package]]
 name = "condor-retl-google-ads-data-manager"

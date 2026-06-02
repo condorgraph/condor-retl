@@ -77,6 +77,7 @@ dev = [
     "pytest>=8.3,<10",
     "pytest-xdist>=3.6,<4",
     "condor-retl-bing-ads",
+    "condor-retl-file",
     "condor-retl-google-ads-data-manager",
     "condor-retl-klaviyo",
     "condor-retl-meta",
@@ -89,6 +90,7 @@ dev = [
 [tool.uv.sources]
 condor-retl = { workspace = true }
 condor-retl-bing-ads = { workspace = true }
+condor-retl-file = { workspace = true }
 condor-retl-google-ads-data-manager = { workspace = true }
 condor-retl-klaviyo = { workspace = true }
 condor-retl-meta = { workspace = true }
@@ -99,6 +101,7 @@ condor-retl-tiktok-ads = { workspace = true }
 members = [
     "destination_connectors/reference_http",
     "destination_connectors/bing_ads",
+    "destination_connectors/file",
     "destination_connectors/meta",
     "destination_connectors/google_ads_data_manager",
     "destination_connectors/klaviyo",
