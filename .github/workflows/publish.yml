@@ -11,6 +11,7 @@ on:
         options:
           - core
           - bing_ads
+          - file
           - meta
           - google_ads_data_manager
           - klaviyo
@@ -49,6 +50,9 @@ jobs:
             bing_ads)
               uv build --sdist --wheel --out-dir dist destination_connectors/bing_ads
               ;;
+            file)
+              uv build --sdist --wheel --out-dir dist destination_connectors/file
+              ;;
             meta)
               uv build --sdist --wheel --out-dir dist destination_connectors/meta
               ;;
@@ -63,6 +67,7 @@ jobs:
               ;;
             all_destinations)
               uv build --sdist --wheel --out-dir dist destination_connectors/bing_ads
+              uv build --sdist --wheel --out-dir dist destination_connectors/file
               uv build --sdist --wheel --out-dir dist destination_connectors/meta
               uv build --sdist --wheel --out-dir dist destination_connectors/google_ads_data_manager
               uv build --sdist --wheel --out-dir dist destination_connectors/klaviyo
@@ -71,6 +76,7 @@ jobs:
             all)
               uv build --sdist --wheel --out-dir dist
               uv build --sdist --wheel --out-dir dist destination_connectors/bing_ads
+              uv build --sdist --wheel --out-dir dist destination_connectors/file
               uv build --sdist --wheel --out-dir dist destination_connectors/meta
               uv build --sdist --wheel --out-dir dist destination_connectors/google_ads_data_manager
               uv build --sdist --wheel --out-dir dist destination_connectors/klaviyo

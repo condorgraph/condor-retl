@@ -11,16 +11,16 @@ lint:
 	uv run ruff check .
 
 typecheck:
-	MYPYPATH=destination_connectors/reference_http:destination_connectors/bing_ads:destination_connectors/meta:destination_connectors/google_ads_data_manager:destination_connectors/klaviyo:destination_connectors/tiktok_ads uv run mypy src tests destination_connectors/reference_http destination_connectors/bing_ads destination_connectors/meta destination_connectors/google_ads_data_manager destination_connectors/klaviyo destination_connectors/tiktok_ads
+	MYPYPATH=destination_connectors/reference_http:destination_connectors/bing_ads:destination_connectors/file:destination_connectors/meta:destination_connectors/google_ads_data_manager:destination_connectors/klaviyo:destination_connectors/tiktok_ads uv run mypy src tests destination_connectors/reference_http destination_connectors/bing_ads destination_connectors/file destination_connectors/meta destination_connectors/google_ads_data_manager destination_connectors/klaviyo destination_connectors/tiktok_ads
 
 lint-lock:
 	uv lock --check
 
 test:
-	uv run pytest tests destination_connectors/reference_http/tests destination_connectors/bing_ads/tests destination_connectors/meta/tests destination_connectors/google_ads_data_manager/tests destination_connectors/klaviyo/tests destination_connectors/tiktok_ads/tests -q -n auto -m "not live_sandbox"
+	uv run pytest tests destination_connectors/reference_http/tests destination_connectors/bing_ads/tests destination_connectors/file/tests destination_connectors/meta/tests destination_connectors/google_ads_data_manager/tests destination_connectors/klaviyo/tests destination_connectors/tiktok_ads/tests -q -n auto -m "not live_sandbox"
 
 test-serial:
-	uv run pytest tests destination_connectors/reference_http/tests destination_connectors/bing_ads/tests destination_connectors/meta/tests destination_connectors/google_ads_data_manager/tests destination_connectors/klaviyo/tests destination_connectors/tiktok_ads/tests -q -m "not live_sandbox"
+	uv run pytest tests destination_connectors/reference_http/tests destination_connectors/bing_ads/tests destination_connectors/file/tests destination_connectors/meta/tests destination_connectors/google_ads_data_manager/tests destination_connectors/klaviyo/tests destination_connectors/tiktok_ads/tests -q -m "not live_sandbox"
 
 test-common:
 	uv run pytest tests/architecture -q -n auto

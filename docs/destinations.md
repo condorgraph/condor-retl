@@ -49,6 +49,14 @@ is the package-shaped proof path for destination package loading, HTTP request
 planning, dry-run output, transport submission, receipts, and destination batch
 ledger behavior.
 
+The first-party `retl/file` connector is a local file handoff destination. It
+writes new CSV export drops for State Operations and Event imports instead of
+mutating a partner API. Each successful submission creates operation-specific
+CSV files plus a manifest with RETL batch ids, counts, file sizes, and
+checksums. File drops are at-least-once handoff artifacts: replay may create a
+new export directory, and downstream consumers should use manifest evidence for
+deduplication.
+
 Active first-party partner packages may include opt-in `live_sandbox` tests
 for disposable partner accounts or sandbox resources. These tests must stay
 outside default checks, must be run through explicit `make test-sandbox-*`

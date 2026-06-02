@@ -112,3 +112,4 @@ First-party connector packages currently cover:
 | `condor-retl-google-ads-data-manager` | `retl/google-ads-data-manager` |
 | `condor-retl-bing-ads` | `retl/bing-ads` |
 | `condor-retl-tiktok-ads` | `retl/tiktok-ads` |
+| `condor-retl-file` | `retl/file` |
